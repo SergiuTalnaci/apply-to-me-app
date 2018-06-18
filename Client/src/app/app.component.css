@@ -1,0 +1,32 @@
+::ng-deep .mat-tab-labels{
+  background:white;
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.near-header { 
+  margin: 0 0 1em 0;
+}
+
+.tab-content {
+  padding: 1em 0 0 0;
+  display: block;
+}
+
+.no-pad {
+padding: 0 0 0 1em;
+}
+
+.tab-group {
+  margin: 2em 0 0 0;
+}
+
+.image-bg {
+  padding: 2em 0 2em 4em;
+  background-image: url("../assets/Images/sectionDarkBlue-bg.jpg");
+  color: white;
+  min-height: 100vh;
+}
