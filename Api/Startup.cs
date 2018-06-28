@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Repositories;
+using Repositories.Interfaces;
 
 namespace Api
 {
@@ -30,7 +31,7 @@ namespace Api
       var connectionString = Configuration.GetConnectionString("DefaultConnection");
       services.AddDbContext<AppDb>(options => { options.UseSqlServer(connectionString); });
 
-      services.AddTransient<QuestionAnswerRepository, QuestionAnswerRepository>();
+      services.AddTransient<IQuestionAnswerRepository, QuestionAnswerRepository>();
 
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
       services.AddCors(options =>

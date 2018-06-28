@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { QuestionsService } from '../../services/questions.service';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +8,9 @@ import { QuestionsService } from '../../services/questions.service';
 export class HeaderComponent implements OnInit {
 
   @Input() titleText : string;
-  constructor(private questionService: QuestionsService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.questionService.getValues().subscribe(x => { 
-      console.log(x);
-    });
   }
 
 }

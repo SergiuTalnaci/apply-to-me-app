@@ -10,19 +10,25 @@ var platform_browser_1 = require("@angular/platform-browser");
 var animations_1 = require("@angular/platform-browser/animations");
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
+var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
 var material_1 = require("@angular/material");
 var header_component_1 = require("./Job-application.Feature/components/header/header.component");
 var questions_service_1 = require("./Job-application.Feature/services/questions.service");
+var home_component_1 = require("./Question-answer.Feature/components/home/home.component");
+var openings_component_1 = require("./Job-application.Feature/components/openings/openings.component");
+var forms_1 = require("@angular/forms");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            declarations: [app_component_1.AppComponent, header_component_1.HeaderComponent],
+            declarations: [app_component_1.AppComponent, header_component_1.HeaderComponent, home_component_1.HomeComponent, openings_component_1.OpeningsComponent],
             imports: [
                 platform_browser_1.BrowserModule,
+                app_routing_module_1.AppRoutingModule,
                 http_1.HttpClientModule,
+                forms_1.FormsModule,
                 animations_1.BrowserAnimationsModule,
                 material_1.MatButtonModule,
                 material_1.MatCheckboxModule,

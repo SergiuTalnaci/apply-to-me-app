@@ -8,6 +8,6 @@ namespace Data.Models
     public int QuestionId { get; set; }
     public string QuestionText { get; set; }
     public DateTime? Deleted { get; set; }
-    public ICollection<Answer> Answer { get; set; } = new HashSet<Answer>();
+    public ICollection<Answer> Answers { get; set; } = new HashSet<Answer>();
   }
 }

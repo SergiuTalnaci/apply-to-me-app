@@ -1,0 +1,19 @@
+.image-bg {
+  padding: 2em 0 2em 4em;
+  background-image: url("../../../../assets/Images/sectionDarkBlue-bg.jpg");
+  color: white;
+  min-height: 100vh;
+}
+
+.input-width {
+  width: 60%;
+}
+
+button { 
+  margin: 0 0 0 5em;
+}
+
+.qa-card { 
+  max-width: 80vw;
+  margin: 2em 0 0 0;
+}

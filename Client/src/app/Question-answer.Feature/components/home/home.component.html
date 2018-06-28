@@ -1,0 +1,26 @@
+<div class="image-bg">
+  <mat-card class="qa-card">
+    <mat-card-title>Ask a question</mat-card-title>
+    <mat-card-content>
+      <mat-form-field class="input-width">
+        <input matInput name="newQuestionText" [(ngModel)]="newQuestionText" #questionText placeholder="What is your question?" questionText.value=''
+        />
+      </mat-form-field>
+      <button mat-button mat-raised-button color="primary" (click)="askQuestion(newQuestionText)">Ask</button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="qa-card" (click)="selectQuestion(i)" *ngFor="let question of questions; let i = index">
+    <mat-card-title>{{question.questionText}}</mat-card-title>
+    <mat-card-content *ngIf="selectedIndexOfQuestion == i">
+      {{index}}
+      <ul>
+        <li *ngFor="let answer of question.answers">{{answer.answerText}}</li>
+      </ul>
+      <mat-form-field class="input-width">
+        <input matInput #answerText [(ngModel)]="selectedQuestionAnsweText" placeholder="Answer question" />
+      </mat-form-field>
+      <button mat-button mat-raised-button color="primary" (click)="answerQuestion(question, selectedQuestionAnsweText)">Give your answer</button>
+    </mat-card-content>
+  </mat-card>
+</div>
