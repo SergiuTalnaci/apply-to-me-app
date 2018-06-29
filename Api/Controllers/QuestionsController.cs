@@ -50,8 +50,15 @@ namespace Api.Controllers
 
     // DELETE api/values/5
     [HttpDelete("{id}")]
-    public void Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
+      var isDeleted = await _repository.DeleteQuestion(id);
+      if(isDeleted)
+      {
+        return NoContent();
+      }
+      ModelState.AddModelError("error", "Could not dlete question");
+      return BadRequest(ModelState);
     }
   }
 }

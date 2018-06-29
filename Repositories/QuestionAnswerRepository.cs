@@ -7,16 +7,19 @@ using Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Repositories.Interfaces;
+using Services.Interfaces;
 
 namespace Repositories
 {
   public class QuestionAnswerRepository : IQuestionAnswerRepository
   {
     private readonly AppDb _context;
+    private readonly IQuestionAnswerService _service;
     private readonly ILogger<QuestionAnswerRepository> _logger;
-    public QuestionAnswerRepository(AppDb context, ILogger<QuestionAnswerRepository> logger)
+    public QuestionAnswerRepository(AppDb context, ILogger<QuestionAnswerRepository> logger, IQuestionAnswerService service)
     {
       _context = context;
+      _service = service;
       _logger = logger;
     }
     public async Task<bool> AnswerQuestion(Answer answer)
@@ -76,9 +79,8 @@ namespace Repositories
       {
         var question = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
         if (question == null) return false;
-        var answers = await _context.Answers.Where(x => x.QuestionId == questionId).ToListAsync();
-        answers.ForEach(x => x.Deleted = DateTime.Now);
-        question.Deleted = DateTime.Now;
+        question.Answers = await _context.Answers.Where(x => x.QuestionId == questionId).ToListAsync();
+        question = await _service.DeleteQuestion(question);
         await _context.SaveChangesAsync();
         _logger.LogInformation($"Deleted question: {questionId} and all the answers");
         return true;

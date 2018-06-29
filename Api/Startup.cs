@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Repositories;
 using Repositories.Interfaces;
+using Services;
+using Services.Interfaces;
 
 namespace Api
 {
@@ -32,6 +34,7 @@ namespace Api
       services.AddDbContext<AppDb>(options => { options.UseSqlServer(connectionString); });
 
       services.AddTransient<IQuestionAnswerRepository, QuestionAnswerRepository>();
+      services.AddTransient<IQuestionAnswerService, QuestionAnswerService>();
 
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
       services.AddCors(options =>

@@ -11,7 +11,7 @@ import { AnswersService } from "../../services/answers.service";
 })
 export class HomeComponent implements OnInit {
   selectedQuestion: Question;
-  questions: Question[] = [{ questionId: 0, questionText: "How old is John" }];
+  questions: Question[] = [];
   newQuestionText: string;
   selectedQuestionAnsweText: string;
   selectedIndexOfQuestion: number;
@@ -41,23 +41,29 @@ export class HomeComponent implements OnInit {
       answerText: answerText,
       questionId: question.questionId
     };
-    this.answerService.answerQuestion(answer).subscribe(x => { 
+    this.answerService.answerQuestion(answer).subscribe(x => {
       console.log(x);
-    })
-    if (question.answers) {
-      question.answers = [...question.answers, answer];
-    } else {
-      question.answers = [answer];
-    }
-    this.selectedQuestionAnsweText = "";
+      if (question.answers) {
+        question.answers = [...question.answers, answer];
+      } else {
+        question.answers = [answer];
+      }
+      this.selectedQuestionAnsweText = "";
+    });
   }
   selectQuestion(index: number) {
-    if(this.selectedIndexOfQuestion === index) return;
+    if (this.selectedIndexOfQuestion === index) return;
     this.selectedIndexOfQuestion = index;
     const question = this.questions[index];
     this.answerService.get(question.questionId).subscribe(x => {
       console.log(x);
       question.answers = x;
+    });
+  }
+
+  deleteQuestion(question: Question) { 
+    this.questionService.delete(question).subscribe(x => {
+      this.questions = this.questions.filter(q => q.questionId != question.questionId);
     });
   }
 }

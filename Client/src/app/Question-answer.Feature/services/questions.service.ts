@@ -15,4 +15,9 @@ export class QuestionsService {
   post(question: Question): Observable<Question>{ 
     return this.http.post<Question>(environment.apiUrl + "questions", question, {withCredentials: true});
   }
+
+  delete(question: Question): Observable<void>{ 
+    console.log(question);
+    return this.http.delete<void>(environment.apiUrl + "questions/" + question.questionId, {withCredentials: true});
+  }
 }

@@ -21,6 +21,7 @@
         <input matInput #answerText [(ngModel)]="selectedQuestionAnsweText" placeholder="Answer question" />
       </mat-form-field>
       <button mat-button mat-raised-button color="primary" (click)="answerQuestion(question, selectedQuestionAnsweText)">Give your answer</button>
+      <button mat-button class="deletebutton" (click)="deleteQuestion(question)">Delete question</button>
     </mat-card-content>
   </mat-card>
 </div>
